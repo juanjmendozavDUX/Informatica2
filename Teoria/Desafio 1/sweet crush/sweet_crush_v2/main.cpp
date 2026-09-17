@@ -1,11 +1,12 @@
 #include <iostream>
-
+#include "funciones_jugador.h"
 using namespace std;
 
 void Interfazjugador();
 
 int main()
 {
+
 
     bool salir = false;
 
@@ -16,9 +17,10 @@ int main()
         cout << " -------------------\n";
         cout << " |  MENU PRINCIPAL |  \n";
         cout << " -------------------\n";
+        cout << "Elija una opcion: " << endl;
         cout << "1. Comenzar Juego" << endl;
         cout << "2. Salir" << endl;
-        cout << "Elija una opcion: " << endl;
+
 
         cin >> num;
 
@@ -52,7 +54,8 @@ void Interfazjugador()
     do {
 
         int opciones;
-
+        cout<<"Elija el numero de filas para el tablero "<<endl;
+        cout<<"Elija el numero de columnas para el tablero "<<endl;
         cout << "\nELIJA LA OPCION PARA JUGAR" << endl;
         cout << "1- ELIMINA UNA FILA" << endl;
         cout << "2- ELIMINA UNA COLUMNA" << endl;
