@@ -49,13 +49,20 @@ int main()
 
 void Interfazjugador()
 {
+    int F, C, tam;
     bool volver = false;
+    cout<<"Elija el numero de filas para el tablero "; cin>>F;
+    cout<<endl;
+    cout<<"Elija el numero de columnas para el tablero "; cin>>C;
+    cout<<endl;
+    InicializarTablero(F, C);
+
+
 
     do {
 
         int opciones;
-        cout<<"Elija el numero de filas para el tablero "<<endl;
-        cout<<"Elija el numero de columnas para el tablero "<<endl;
+
         cout << "\nELIJA LA OPCION PARA JUGAR" << endl;
         cout << "1- ELIMINA UNA FILA" << endl;
         cout << "2- ELIMINA UNA COLUMNA" << endl;
