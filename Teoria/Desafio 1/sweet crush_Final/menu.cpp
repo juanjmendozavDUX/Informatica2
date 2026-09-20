@@ -52,16 +52,16 @@ void MostrarEstadisticas(int filas, int columnas, int eliminaciones_usuario, int
 }
 
 void ResolverDespuesDeCambio(int filas, int columnas,
-                             unsigned char* tablero, int bytes_reservados,
+                             unsigned char* tablero,
                              int& combinaciones, int& fichas_eliminadas,
                              int& puntuacion, int& cascadas, int& cascadas_totales)
 {
     // despues de un cambio se reorganiza y se revisan las cascadas
-    ReorganizarTablero(filas, columnas, tablero, bytes_reservados);
-    RellenarTablero(filas, columnas, tablero, bytes_reservados);
+    ReorganizarTablero(filas, columnas, tablero);
+    RellenarTablero(filas, columnas, tablero);
 
     cascadas = 0;
-    ResolverCascadas(filas, columnas, tablero, bytes_reservados,
+    ResolverCascadas(filas, columnas, tablero,
                      combinaciones, fichas_eliminadas,
                      puntuacion, cascadas);
 
@@ -70,10 +70,7 @@ void ResolverDespuesDeCambio(int filas, int columnas,
 
 int main()
 {
-<<<<<<< HEAD
-=======
     srand((unsigned)time(0));
->>>>>>> 25f11fe (funciones de columnas, filas y cascadas)
 
     bool salir = false;
 
@@ -81,11 +78,7 @@ int main()
     {
         int num = 0;
 
-<<<<<<< HEAD
-
-=======
         cout << "\n";
->>>>>>> 25f11fe (funciones de columnas, filas y cascadas)
         cout << " -------------------\n";
         cout << " |  MENU PRINCIPAL  |\n";
         cout << " -------------------\n";
@@ -128,8 +121,7 @@ int main()
             }
 
             int bytes_reservados = 0;
-            unsigned char* tablero = InicializarTablero(filas, columnas,
-                                                         bytes_reservados);
+            unsigned char* tablero = InicializarTablero(filas, columnas, bytes_reservados);
 
             int eliminaciones_usuario = 0;
             int fichas_eliminadas = 0;
@@ -143,7 +135,7 @@ int main()
             int puntuacion_inicial = 0;
             int cascadas_iniciales = 0;
 
-            ResolverCascadas(filas, columnas, tablero, bytes_reservados,
+            ResolverCascadas(filas, columnas, tablero,
                              combinaciones_iniciales, fichas_iniciales,
                              puntuacion_inicial, cascadas_iniciales);
 
@@ -182,7 +174,7 @@ void Interfazjugador(int& filas, int& columnas,
         cout << "             tablero" << endl;
         cout << "===============================" << endl;
 
-        MostrarTablero(filas, columnas, tablero, bytes_reservados);
+        MostrarTablero(filas, columnas, tablero);
         MostrarTableroBinario(filas, columnas, tablero);
 
         int cascadas_ultima_jugada = 0;
@@ -219,7 +211,7 @@ void Interfazjugador(int& filas, int& columnas,
                              tablero, bytes_reservados);
                 eliminaciones_usuario++;
 
-                ResolverDespuesDeCambio(filas, columnas, tablero, bytes_reservados,
+                ResolverDespuesDeCambio(filas, columnas, tablero,
                                         combinaciones, fichas_eliminadas,
                                         puntuacion, cascadas_ultima_jugada, cascadas_totales);
             }
@@ -241,7 +233,7 @@ void Interfazjugador(int& filas, int& columnas,
                                 tablero, bytes_reservados);
                 eliminaciones_usuario++;
 
-                ResolverDespuesDeCambio(filas, columnas, tablero, bytes_reservados,
+                ResolverDespuesDeCambio(filas, columnas, tablero,
                                         combinaciones, fichas_eliminadas,
                                         puntuacion, cascadas_ultima_jugada, cascadas_totales);
             }
@@ -271,16 +263,16 @@ void Interfazjugador(int& filas, int& columnas,
 
             int p = fila * columnas + columna;
 
-            if (ObtenerFicha(p, tablero, bytes_reservados) == VACIO)
+            if (ObtenerFicha(p, tablero) == VACIO)
             {
                 cout << "esa posicion esta vacia" << endl;
                 break;
             }
 
-            EliminarFicha(p, tablero, bytes_reservados);
+            EliminarFicha(p, tablero);
             eliminaciones_usuario++;
 
-            ResolverDespuesDeCambio(filas, columnas, tablero, bytes_reservados,
+            ResolverDespuesDeCambio(filas, columnas, tablero,
                                     combinaciones, fichas_eliminadas,
                                     puntuacion, cascadas_ultima_jugada, cascadas_totales);
             break;
@@ -296,7 +288,7 @@ void Interfazjugador(int& filas, int& columnas,
                 AgregarFila(posicion, filas, columnas,
                             tablero, bytes_reservados);
 
-                ResolverDespuesDeCambio(filas, columnas, tablero, bytes_reservados,
+                ResolverDespuesDeCambio(filas, columnas, tablero,
                                         combinaciones, fichas_eliminadas,
                                         puntuacion, cascadas_ultima_jugada, cascadas_totales);
             }
@@ -313,7 +305,7 @@ void Interfazjugador(int& filas, int& columnas,
                 AgregarColumna(posicion, filas, columnas,
                                tablero, bytes_reservados);
 
-                ResolverDespuesDeCambio(filas, columnas, tablero, bytes_reservados,
+                ResolverDespuesDeCambio(filas, columnas, tablero,
                                         combinaciones, fichas_eliminadas,
                                         puntuacion, cascadas_ultima_jugada, cascadas_totales);
             }

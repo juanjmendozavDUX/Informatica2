@@ -1,48 +1,43 @@
 #ifndef LOGICA_H
 #define LOGICA_H
 
+// Cada ficha ocupa exactamente 3 bits (valores posibles: 0 a 7).
+// 0 = posicion vacia. 1 a 6 = los seis tipos de ficha. El 7 queda libre.
 const int VACIO = 0;
-const int ESPECIAL = 2;
-
-const int A = 7;
-const int B = 1;
+const int A = 1;
+const int B = 2;
 const int C = 3;
-const int D = 5;
-const int E = 4;
+const int D = 4;
+const int E = 5;
 const int F = 6;
 
-// acceso a bits
+// ---- Acceso a bits ----
 int CalcularBytesNecesarios(int filas, int columnas);
-unsigned char ObtenerFicha(int p, unsigned char* tablero, int bytes_reservados);
-void PonerFicha(int p, unsigned char* tablero, int valornuevo, int bytes_reservados);
-void LimpiarBitsSobrantes(int filas, int columnas, unsigned char* tablero);
+unsigned char ObtenerFicha(int p, unsigned char* tablero);
+void PonerFicha(int p, unsigned char* tablero, int valornuevo);
 
-// creacion y eliminacion puntual
+// ---- Creacion / eliminacion puntual ----
 unsigned char* InicializarTablero(int filas, int columnas, int& bytes_reservados);
-void EliminarFicha(int p, unsigned char* tablero, int bytes_reservados);
+void EliminarFicha(int p, unsigned char* tablero);
 
-// mostrar tablero
+// ---- Visualizacion ----
 char ConvertirFicha(unsigned char ficha);
-void MostrarTablero(int filas, int columnas, unsigned char* tablero, int bytes_reservados);
+void MostrarTablero(int filas, int columnas, unsigned char* tablero);
 void MostrarTableroBinario(int filas, int columnas, unsigned char* tablero);
 
-// deteccion y resolucion de combinaciones
-int DetectarCombinaciones(int filas, int columnas, unsigned char* tablero, int bytes_reservados, bool* marcadas);
+// ---- Deteccion y resolucion de combinaciones ----
+int DetectarCombinaciones(int filas, int columnas, unsigned char* tablero, bool* marcadas);
 int EliminarMarcadas(int filas, int columnas, unsigned char* tablero, bool* marcadas);
-void ReorganizarTablero(int filas, int columnas, unsigned char* tablero, int bytes_reservados);
-void RellenarTablero(int filas, int columnas, unsigned char* tablero, int bytes_reservados);
+void ReorganizarTablero(int filas, int columnas, unsigned char* tablero);
+void RellenarTablero(int filas, int columnas, unsigned char* tablero);
 void ResolverCascadas(int filas, int columnas, unsigned char* tablero,
-                      int bytes_reservados, int& combinaciones, int& fichas_eliminadas,
+                      int& combinaciones, int& fichas_eliminadas,
                       int& puntuacion, int& cascadas);
 
-// modificacion de estructura de filas y columnas
-void EliminarFila(int posicion_fila, int& filas, int columnas,
-                 unsigned char*& tablero, int& bytes_reservados);
-void EliminarColumna(int posicion_columna, int filas, int& columnas,
-                     unsigned char*& tablero, int& bytes_reservados);
-void AgregarFila(int posicion_fila, int& filas, int columnas,
-                 unsigned char*& tablero, int& bytes_reservados);
-void AgregarColumna(int posicion_columna, int filas, int& columnas,
-                    unsigned char*& tablero, int& bytes_reservados);
+// ---- Modificacion de estructura (filas / columnas) ----
+void EliminarFila(int posicion_fila, int& filas, int columnas, unsigned char*& tablero, int& bytes_reservados);
+void EliminarColumna(int posicion_columna, int filas, int& columnas, unsigned char*& tablero, int& bytes_reservados);
+void AgregarFila(int posicion_fila, int& filas, int columnas, unsigned char*& tablero, int& bytes_reservados);
+void AgregarColumna(int posicion_columna, int filas, int& columnas, unsigned char*& tablero, int& bytes_reservados);
 
 #endif // LOGICA_H
